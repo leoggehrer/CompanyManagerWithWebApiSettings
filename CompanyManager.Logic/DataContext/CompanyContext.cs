@@ -15,7 +15,7 @@ namespace CompanyManager.Logic.DataContext
             var appSettings = Modules.AppSettings.Instance;
 
             DatabaseType = appSettings["Database:Type"] ?? DatabaseType;
-            ConnectionString = appSettings[$"{DatabaseType}:ConnectionString"] ?? ConnectionString;
+            ConnectionString = appSettings[$"ConnectionStrings:{DatabaseType}ConnectionString"] ?? ConnectionString;
         }
         public DbSet<Entities.Company> CompanySet { get; set; }
         public DbSet<Entities.Customer> CustomerSet { get; set; }
@@ -23,7 +23,14 @@ namespace CompanyManager.Logic.DataContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(ConnectionString);
+            if (DatabaseType == "Sqlite")
+            {
+                optionsBuilder.UseSqlite(ConnectionString);
+            }
+            else if (DatabaseType == "SqlServer")
+            {
+                optionsBuilder.UseSqlServer(ConnectionString);
+            }
 
             base.OnConfiguring(optionsBuilder);
         }

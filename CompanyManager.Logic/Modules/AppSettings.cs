@@ -1,13 +1,21 @@
+using CompanyManager.Logic.Contracts;
 using Microsoft.Extensions.Configuration;
 
 namespace CompanyManager.Logic.Modules
 {
-    public sealed class AppSettings
+    /// <summary>
+    /// Singleton class to manage application settings.
+    /// </summary>
+    public sealed class AppSettings : ISettings
     {
         #region fields
         private static AppSettings _instance = new AppSettings();
         private static IConfigurationRoot _configurationRoot;
         #endregion fields
+
+        /// <summary>
+        /// Static constructor to initialize the configuration.
+        /// </summary>
         static AppSettings()
         {
             var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -20,12 +28,24 @@ namespace CompanyManager.Logic.Modules
         }
 
         #region properties
+        /// <summary>
+        /// Gets the singleton instance of the AppSettings class.
+        /// </summary>
         public static AppSettings Instance => _instance;
         #endregion properties
+
+        /// <summary>
+        /// Private constructor to prevent instantiation.
+        /// </summary>
         private AppSettings()
         {
         }
 
+        /// <summary>
+        /// Indexer to get the configuration value by key.
+        /// </summary>
+        /// <param name="key">The configuration key.</param>
+        /// <returns>The configuration value.</returns>
         public string? this[string key] => _configurationRoot[key];
     }
 }

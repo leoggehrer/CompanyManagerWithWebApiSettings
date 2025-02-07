@@ -14,6 +14,9 @@ namespace CompanyManager.WebApi
             // Add ContextAccessor to the services.
             builder.Services.AddScoped<Contracts.IContextAccessor, Controllers.ContextAccessor>();
 
+            // Add AppSettings to the services.
+            builder.Services.AddSingleton<Logic.Contracts.ISettings>(Logic.Modules.AppSettings.Instance);
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

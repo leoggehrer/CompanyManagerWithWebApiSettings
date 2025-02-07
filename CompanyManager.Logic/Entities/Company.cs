@@ -7,7 +7,7 @@ namespace CompanyManager.Logic.Entities
     /// <summary>
     /// Represents a company entity.
     /// </summary>
-    [System.ComponentModel.DataAnnotations.Schema.Table("Companies")]
+    [Table("Companies")]
     [Index(nameof(Name), IsUnique = true)]
     public class Company : EntityObject, ICompany
     {

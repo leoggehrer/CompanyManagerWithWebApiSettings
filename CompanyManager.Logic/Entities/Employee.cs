@@ -1,4 +1,5 @@
 ﻿using CompanyManager.Logic.Contracts;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CompanyManager.Logic.Entities
@@ -6,6 +7,8 @@ namespace CompanyManager.Logic.Entities
     /// <summary>
     /// Represents an employee entity.
     /// </summary>
+    [Table("Employees")]
+    [Index(nameof(Email), IsUnique = true)]
     public class Employee : EntityObject, IEmployee
     {
         #region properties
