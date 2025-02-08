@@ -12,7 +12,7 @@ namespace CompanyManager.Logic.DataContext
 
         static CompanyContext()
         {
-            var appSettings = Modules.AppSettings.Instance;
+            var appSettings = Modules.Configuration.AppSettings.Instance;
 
             DatabaseType = appSettings["Database:Type"] ?? DatabaseType;
             ConnectionString = appSettings[$"ConnectionStrings:{DatabaseType}ConnectionString"] ?? ConnectionString;

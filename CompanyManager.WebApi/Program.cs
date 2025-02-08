@@ -15,7 +15,7 @@ namespace CompanyManager.WebApi
             builder.Services.AddScoped<Contracts.IContextAccessor, Controllers.ContextAccessor>();
 
             // Add AppSettings to the services.
-            builder.Services.AddSingleton<Logic.Contracts.ISettings>(Logic.Modules.AppSettings.Instance);
+            builder.Services.AddSingleton<Logic.Contracts.ISettings>(Logic.Modules.Configuration.AppSettings.Instance);
 
             var app = builder.Build();
 

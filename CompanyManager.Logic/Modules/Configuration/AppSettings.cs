@@ -1,7 +1,7 @@
 using CompanyManager.Logic.Contracts;
 using Microsoft.Extensions.Configuration;
 
-namespace CompanyManager.Logic.Modules
+namespace CompanyManager.Logic.Modules.Configuration
 {
     /// <summary>
     /// Singleton class to manage application settings.
